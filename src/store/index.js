@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: "",
+    user: "Bob",
     currentChat: data[0],
     chats: data
   },
@@ -16,6 +16,10 @@ export default new Vuex.Store({
     },
     logout(state) {
       state.user = "";
+    },
+    selectChat(state, payload) {
+      const selectChat = data.filter(chat => chat.name === payload)[0];
+      state.currentChat = selectChat;
     }
   },
   actions: {
@@ -24,6 +28,9 @@ export default new Vuex.Store({
     },
     logout({ commit }) {
       commit("logout");
+    },
+    selectChat({ commit }, payload) {
+      commit("selectChat", payload);
     }
   },
   getters: {

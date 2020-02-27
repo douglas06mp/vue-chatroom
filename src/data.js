@@ -30,6 +30,11 @@ export default [
     name: "Car",
     chats: [
       { user: "Jacob", text: "hi" },
+      {
+        user: "Bob",
+        text:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
       { user: "Terry", text: "hi" }
     ]
   },
@@ -37,7 +42,12 @@ export default [
     name: "Travel",
     chats: [
       { user: "Amy", text: "hi" },
-      { user: "Jessica", text: "hi" }
+      { user: "Jessica", text: "hi" },
+      {
+        user: "Bob",
+        text:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
     ]
   }
 ];
