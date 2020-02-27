@@ -5,12 +5,8 @@
     </div>
 
     <ul class="list-group mt-2">
-      <li
-        class="list-group-item my-2"
-        v-for="(room, index) in chats"
-        :key="index"
-      >
-        <h5>{{ index }}</h5>
+      <li class="list-group-item my-2" v-for="chat in chats" :key="chat.name">
+        <h5>{{ chat.name }}</h5>
       </li>
     </ul>
   </div>
@@ -18,14 +14,15 @@
 
 <script>
 export default {
-  props: { chats: Object }
+  props: { chats: Array }
 };
 </script>
 
 <style lang="scss" scoped>
 .room-list {
   .list-group-item {
-    background: rgb(41, 236, 188);
+    color: #fff;
+    background: #007bff;
     border: none;
     border-radius: 20px;
     cursor: pointer;

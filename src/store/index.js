@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: "Bob",
+    currentChat: data[0],
     chats: data
   },
   mutations: {},
@@ -14,6 +15,9 @@ export default new Vuex.Store({
   getters: {
     user: state => {
       return state.user;
+    },
+    currentChat: state => {
+      return state.currentChat;
     },
     chats: state => {
       return state.chats;

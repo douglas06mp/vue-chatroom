@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="block room">
-      <h1>Chat</h1>
+      <Chat :currentChat="currentChat" :user="user" />
     </div>
   </div>
 </template>
@@ -17,10 +17,14 @@
 <script>
 import User from "../components/User";
 import RoomList from "../components/RoomList";
+import Chat from "../components/Chat";
 export default {
   computed: {
     user() {
       return this.$store.getters.user;
+    },
+    currentChat() {
+      return this.$store.getters.currentChat;
     },
     chats() {
       return this.$store.getters.chats;
@@ -28,7 +32,8 @@ export default {
   },
   components: {
     User,
-    RoomList
+    RoomList,
+    Chat
   }
 };
 </script>
@@ -55,6 +60,7 @@ export default {
   .block {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   }
 }
 </style>
