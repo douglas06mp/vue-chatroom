@@ -39,15 +39,13 @@ export default {
   },
   methods: {
     sendMessage() {
-      const message = {
-        chat: this.currentChat,
-        user: this.user,
-        text: this.text
-      };
+      const idx = Object.keys(this.currentChat.chats).length;
+      const user = this.user;
+      const message = this.message;
       this.$store
-        .dispatch("sendMessage", message)
+        .dispatch("sendMessage", { idx, user, message })
         .then(() => this.scrollToBottom());
-      this.text = "";
+      this.message = "";
     },
     scrollToBottom(duration) {
       const content = this.$refs.content;

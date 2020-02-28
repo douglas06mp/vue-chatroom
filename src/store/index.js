@@ -19,13 +19,10 @@ export default new Vuex.Store({
       state.user = "";
     },
     selectChat(state, payload) {
-      const selectChat = data.filter(chat => chat.name === payload)[0];
-      state.currentChat = selectChat;
+      state.currentChat = state.chats[payload];
     },
-    sendMessage(state, { chat, user, text }) {
-      state.chats
-        .filter(({ name }) => name === chat.name)[0]
-        .chats.push({ user, text });
+    sendMessage(state, { idx, user, message }) {
+      state.currentChat.chats[idx] = { name: user, text: message };
     }
   },
   actions: {
