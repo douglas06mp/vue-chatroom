@@ -20,6 +20,11 @@ export default new Vuex.Store({
     selectChat(state, payload) {
       const selectChat = data.filter(chat => chat.name === payload)[0];
       state.currentChat = selectChat;
+    },
+    sendMessage(state, { chat, user, text }) {
+      state.chats
+        .filter(({ name }) => name === chat.name)[0]
+        .chats.push({ user, text });
     }
   },
   actions: {
@@ -31,6 +36,9 @@ export default new Vuex.Store({
     },
     selectChat({ commit }, payload) {
       commit("selectChat", payload);
+    },
+    sendMessage({ commit }, payload) {
+      commit("sendMessage", payload);
     }
   },
   getters: {

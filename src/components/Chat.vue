@@ -1,7 +1,7 @@
 <template>
   <div class="chat py-3 px-4">
     <h3>{{ currentChat.name }}</h3>
-    <div class="content p-3 rounded">
+    <div class="content p-3 rounded" ref="content">
       <div
         class="user d-flex align-items-start mb-4"
         :class="{ local: chat.user === user, remote: chat.user !== user }"
@@ -17,8 +17,11 @@
         <div class="text rounded px-3 py-2">{{ chat.text }}</div>
       </div>
     </div>
-    <form class="form mt-4 d-flex justify-content-between align-items-center">
-      <input type="text" class="form-control" />
+    <form
+      class="form mt-4 d-flex justify-content-between align-items-center"
+      @submit.prevent="sendMessage"
+    >
+      <input type="text" v-model="text" class="form-control" />
       <button type="submit" class="btn btn-primary">
         <i class="fas fa-reply"></i>
       </button>
@@ -28,7 +31,32 @@
 
 <script>
 export default {
-  props: { currentChat: Object, user: String }
+  props: { currentChat: Object, user: String },
+  data() {
+    return {
+      text: ""
+    };
+  },
+  methods: {
+    sendMessage() {
+      const message = {
+        chat: this.currentChat,
+        user: this.user,
+        text: this.text
+      };
+      this.$store
+        .dispatch("sendMessage", message)
+        .then(() => this.scrollToBottom());
+      this.text = "";
+    },
+    scrollToBottom(duration) {
+      const content = this.$refs.content;
+      content.scrollTo({ top: content.scrollHeight, behavior: "smooth" });
+    }
+  },
+  mounted() {
+    this.scrollToBottom();
+  }
 };
 </script>
 
