@@ -4,7 +4,7 @@
     <div class="content p-3 rounded" ref="content">
       <div
         class="user d-flex align-items-start mb-4"
-        :class="{ local: chat.user === user, remote: chat.user !== user }"
+        :class="{ local: chat.name === user, remote: chat.name !== user }"
         v-for="(chat, idx) in currentChat.chats"
         :key="idx"
       >
@@ -12,7 +12,7 @@
           <div class="pic rounded-circle">
             <img src="https://picsum.photos/100/100?random=2" alt="avatar" />
           </div>
-          <h5 class="mt-2">{{ chat.user }}</h5>
+          <h5 class="mt-2">{{ chat.name }}</h5>
         </div>
         <div class="text rounded px-3 py-2">{{ chat.text }}</div>
       </div>
@@ -21,7 +21,7 @@
       class="form mt-4 d-flex justify-content-between align-items-center"
       @submit.prevent="sendMessage"
     >
-      <input type="text" v-model="text" class="form-control" />
+      <input type="text" v-model="message" class="form-control" />
       <button type="submit" class="btn btn-primary">
         <i class="fas fa-reply"></i>
       </button>
@@ -34,7 +34,7 @@ export default {
   props: { currentChat: Object, user: String },
   data() {
     return {
-      text: ""
+      message: ""
     };
   },
   methods: {

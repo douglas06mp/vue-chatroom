@@ -7,11 +7,11 @@
     <ul class="list-group mt-2">
       <li
         class="list-group-item my-2"
-        v-for="chat in chats"
-        :key="chat.name"
-        @click="selectChat(chat.name)"
+        v-for="(chats, key) in chats"
+        :key="key"
+        @click="selectChat(key)"
       >
-        <h5>{{ chat.name }}</h5>
+        <h5>{{ key }}</h5>
       </li>
     </ul>
   </div>
@@ -19,10 +19,10 @@
 
 <script>
 export default {
-  props: { chats: Array },
+  props: { chats: Object },
   methods: {
-    selectChat(chat) {
-      this.$store.dispatch("selectChat", chat);
+    selectChat(key) {
+      this.$store.dispatch("selectChat", key);
     }
   }
 };

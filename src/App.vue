@@ -4,6 +4,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  created() {
+    this.$store.dispatch("setData");
+  }
+};
+</script>
+
 <style lang="scss">
 #app {
   background: linear-gradient(to top, #7f7fd5, #86a8e7, #91eae4);

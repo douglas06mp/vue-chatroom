@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import firebase from "../firebase";
 import data from "../data.js";
 
 Vue.use(Vuex);
@@ -7,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: "Bob",
-    currentChat: data[0],
+    currentChat: data.Food,
     chats: data
   },
   mutations: {
@@ -28,6 +29,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async setData({ commit }) {
+      const { data } = await firebase.get("data.json");
+      console.log(data.Food);
+    },
     login({ commit }, payload) {
       commit("login", payload);
     },
