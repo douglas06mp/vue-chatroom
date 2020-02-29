@@ -21,7 +21,11 @@
       class="form mt-4 d-flex justify-content-between align-items-center"
       @submit.prevent="sendMessage"
     >
-      <input type="text" v-model="message" class="form-control" />
+      <input
+        type="text"
+        v-model="message"
+        class="form-control d-inline-block"
+      />
       <button type="submit" class="btn btn-primary">
         <i class="fas fa-reply"></i>
       </button>
@@ -129,7 +133,6 @@ export default {
 
   .form {
     input {
-      display: inline-block;
       flex-basis: 90%;
     }
   }

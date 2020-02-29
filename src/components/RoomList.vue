@@ -4,12 +4,18 @@
 
     <ul class="list-group">
       <li
-        class="list-group-item my-2"
-        v-for="(chats, key) in chats"
-        :key="key"
+        class="list-group-item my-2 d-flex justify-content-between align-items-center"
+        v-for="(chats, key, idx) in chats"
+        :key="idx"
         @click="selectChat(key)"
       >
-        <h5>{{ key }}</h5>
+        <h5 class="d-inline-block">{{ key }}</h5>
+        <button
+          class="btn btn-danger rounded-circle"
+          @click.stop="deleteChat(key)"
+        >
+          <i class="fas fa-trash"></i>
+        </button>
       </li>
     </ul>
 
@@ -17,7 +23,11 @@
       class="form d-flex justify-content-between align-items-center"
       @submit.prevent="addChat"
     >
-      <input type="text" v-model="newChatName" class="form-control" />
+      <input
+        type="text"
+        v-model="newChatName"
+        class="form-control d-inline-block"
+      />
       <button type="submit" class="btn btn-warning rounded-circle">
         <i class="fas fa-plus"></i>
       </button>
@@ -44,6 +54,10 @@ export default {
       }
       this.$store.dispatch("addChat", this.newChatName);
       this.newChatName = "";
+    },
+    deleteChat(key) {
+      this.$store.dispatch("deleteChat", key);
+      this.$forceUpdate();
     }
   }
 };
@@ -60,13 +74,20 @@ export default {
       border: none;
       border-radius: 20px;
       cursor: pointer;
+
+      &:hover .btn {
+        opacity: 1;
+      }
+      .btn {
+        transition: opacity 0.5s;
+        opacity: 0;
+      }
     }
   }
 
   .form {
     flex-basis: 8%;
     input {
-      display: inline-block;
       flex-basis: 85%;
     }
   }

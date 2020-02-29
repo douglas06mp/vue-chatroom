@@ -33,6 +33,10 @@ export default new Vuex.Store({
       };
       state.currentChat = state.chats[newChatName];
     },
+    deleteChat(state, chatName) {
+      delete state.chats[chatName];
+      state.currentChat = state.chats[Object.keys(state.chats)[0]];
+    },
     sendMessage(state, { idx, user, message }) {
       state.currentChat.chats = {
         ...state.currentChat.chats,
@@ -56,8 +60,14 @@ export default new Vuex.Store({
     selectChat({ commit }, chatName) {
       commit("selectChat", chatName);
     },
-    addChat({ commit }, newChatName) {
+    addChat({ commit, state }, newChatName) {
       commit("addChat", newChatName);
+    },
+    deleteChat({ commit, state }, chatName) {
+      if (Object.keys(state.chats[chatName].chats).length) {
+        firebase.delete(`data/${chatName}.json`);
+      }
+      commit("deleteChat", chatName);
     },
     sendMessage({ commit, state }, { idx, user, message }) {
       let chatObj = {};
