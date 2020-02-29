@@ -51,10 +51,10 @@ export default {
       flex-basis: 35%;
       .block {
         &:first-child {
-          flex-basis: 10%;
+          height: 10%;
         }
         &:last-child {
-          flex-basis: 85%;
+          height: 85%;
         }
       }
     }

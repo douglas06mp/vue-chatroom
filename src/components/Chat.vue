@@ -39,6 +39,10 @@ export default {
   },
   methods: {
     sendMessage() {
+      if (!this.message.trim()) {
+        this.message = "";
+        return;
+      }
       const idx = Object.keys(this.currentChat.chats).length;
       const user = this.user;
       const message = this.message;

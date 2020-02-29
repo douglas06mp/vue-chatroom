@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isAppLoading: true,
-    user: "",
+    user: null,
     currentChat: {},
     chats: {}
   },
@@ -17,14 +17,21 @@ export default new Vuex.Store({
       state.currentChat = currentChat;
       state.isAppLoading = false;
     },
-    login(state, payload) {
-      state.user = payload;
+    login(state, name) {
+      state.user = name;
     },
     logout(state) {
-      state.user = "";
+      state.user = null;
     },
-    selectChat(state, payload) {
-      state.currentChat = state.chats[payload];
+    selectChat(state, chatName) {
+      state.currentChat = state.chats[chatName];
+    },
+    addChat(state, newChatName) {
+      state.chats[newChatName] = {
+        name: newChatName,
+        chats: {}
+      };
+      state.currentChat = state.chats[newChatName];
     },
     sendMessage(state, { idx, user, message }) {
       state.currentChat.chats = {
@@ -40,20 +47,37 @@ export default new Vuex.Store({
       const currentChat = data[Object.keys(data)[0]];
       commit("setData", { chats, currentChat });
     },
-    login({ commit }, payload) {
-      commit("login", payload);
+    login({ commit }, name) {
+      commit("login", name);
     },
     logout({ commit }) {
       commit("logout");
     },
-    selectChat({ commit }, payload) {
-      commit("selectChat", payload);
+    selectChat({ commit }, chatName) {
+      commit("selectChat", chatName);
+    },
+    addChat({ commit }, newChatName) {
+      commit("addChat", newChatName);
     },
     sendMessage({ commit, state }, { idx, user, message }) {
-      firebase.put(`data/${state.currentChat.name}/chats.json`, {
-        ...state.currentChat.chats,
-        [idx]: { name: user, text: message }
-      });
+      let chatObj = {};
+      if (!idx) {
+        chatObj = {
+          name: state.currentChat.name,
+          chats: {
+            ...state.currentChat.chats,
+            [idx]: { name: user, text: message }
+          }
+        };
+        firebase.put(`data/${state.currentChat.name}.json`, chatObj);
+      } else {
+        chatObj = {
+          ...state.currentChat.chats,
+          [idx]: { name: user, text: message }
+        };
+        firebase.put(`data/${state.currentChat.name}/chats.json`, chatObj);
+      }
+
       commit("sendMessage", { idx, user, message });
     }
   },
