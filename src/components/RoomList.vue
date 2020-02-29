@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   props: { chats: Object },
   data() {
@@ -52,7 +53,8 @@ export default {
         this.newChatName = "";
         return;
       }
-      this.$store.dispatch("addChat", this.newChatName);
+      const newChatName = _.capitalize(this.newChatName);
+      this.$store.dispatch("addChat", newChatName);
       this.newChatName = "";
     },
     deleteChat(key) {

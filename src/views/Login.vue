@@ -1,14 +1,15 @@
 <template>
-  <div
+  <form
     id="login"
     class="w-100 h-100 d-flex justify-content-center align-items-center"
+    @submit.prevent="login"
   >
     <div class="wrapper rounded p-3">
       <div class="w-100 mb-4">
         <h4 class="text-white d-inline-block">Enter your name</h4>
         <button
           class="btn btn-primary rounded-circle float-right"
-          @click="login"
+          type="submit"
         >
           <i class="fas fa-arrow-right"></i>
         </button>
@@ -25,7 +26,7 @@
         />
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
