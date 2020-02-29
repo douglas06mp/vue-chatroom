@@ -3,19 +3,17 @@
     id="chatroom"
     class="h-100 w-100 d-flex justify-content-center align-items-center"
   >
-    <div class="wrapper">
-      <div class="container h-100 d-flex justify-content-between">
-        <div class="info h-100 d-flex flex-column justify-content-between">
-          <div class="block d-flex align-items-center">
-            <User :user="user" />
-          </div>
-          <div class="block">
-            <RoomList :chats="chats" />
-          </div>
+    <div class="container h-75 d-flex justify-content-between">
+      <div class="info h-100 d-flex flex-column justify-content-between">
+        <div class="block d-flex align-items-center">
+          <User :user="user" />
         </div>
-        <div class="block room">
-          <Chat :currentChat="currentChat" :user="user" />
+        <div class="block">
+          <RoomList :chats="chats" />
         </div>
+      </div>
+      <div class="block room">
+        <Chat :currentChat="currentChat" :user="user" />
       </div>
     </div>
   </div>
@@ -47,7 +45,7 @@ export default {
 
 <style lang="scss" scoped>
 #chatroom {
-  .wrapper {
+  .container {
     height: 800px;
     .info {
       flex-basis: 35%;
