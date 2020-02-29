@@ -1,21 +1,29 @@
 <template>
-  <div id="login" class="rounded p-3">
-    <div class="w-100 mb-4">
-      <h4 class="text-white d-inline-block">Enter your name</h4>
-      <button class="btn btn-primary rounded-circle float-right" @click="login">
-        <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-    <div class="input-group">
-      <span class="message text-warning">{{
-        validation.firstError("name")
-      }}</span>
-      <input
-        type="text"
-        class="form-control"
-        v-model="name"
-        placeholder="name"
-      />
+  <div
+    id="login"
+    class="w-100 h-100 d-flex justify-content-center align-items-center"
+  >
+    <div class="wrapper rounded p-3">
+      <div class="w-100 mb-4">
+        <h4 class="text-white d-inline-block">Enter your name</h4>
+        <button
+          class="btn btn-primary rounded-circle float-right"
+          @click="login"
+        >
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+      <div class="input-group">
+        <span class="message text-warning">{{
+          validation.firstError("name")
+        }}</span>
+        <input
+          type="text"
+          class="form-control"
+          v-model="name"
+          placeholder="name"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -53,16 +61,18 @@ export default {
 
 <style lang="scss" scoped>
 #login {
-  background: rgba(0, 0, 0, 0.3);
-  width: 350px;
-  height: 130px;
+  .wrapper {
+    background: rgba(0, 0, 0, 0.3);
+    width: 350px;
+    height: 130px;
 
-  .input-group {
-    .message {
-      position: absolute;
-      content: "";
-      top: -25px;
-      left: 0;
+    .input-group {
+      .message {
+        position: absolute;
+        content: "";
+        top: -25px;
+        left: 0;
+      }
     }
   }
 }

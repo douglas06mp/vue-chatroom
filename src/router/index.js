@@ -17,7 +17,6 @@ const routes = [
     name: "chat",
     component: ChatRoom,
     beforeEnter: (to, from, next) => {
-      console.log(store.getters.user);
       store.getters.user ? next() : next("/");
     }
   }
