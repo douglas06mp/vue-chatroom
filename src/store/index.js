@@ -8,10 +8,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: "Bob",
-    currentChat: data.Food,
-    chats: data
+    currentChat: {},
+    chats: {}
   },
   mutations: {
+    setData(state, { chats, currentChat }) {
+      state.chats = chats;
+      state.currentChat = currentChat;
+    },
     login(state, payload) {
       state.user = payload;
     },
@@ -22,13 +26,18 @@ export default new Vuex.Store({
       state.currentChat = state.chats[payload];
     },
     sendMessage(state, { idx, user, message }) {
-      state.currentChat.chats[idx] = { name: user, text: message };
+      state.currentChat.chats = {
+        ...state.currentChat.chats,
+        [idx]: { name: user, text: message }
+      };
     }
   },
   actions: {
     async setData({ commit }) {
       const { data } = await firebase.get("data.json");
-      console.log(data.Food);
+      const chats = data;
+      const currentChat = data[Object.keys(data)[0]];
+      commit("setData", { chats, currentChat });
     },
     login({ commit }, payload) {
       commit("login", payload);
@@ -39,8 +48,12 @@ export default new Vuex.Store({
     selectChat({ commit }, payload) {
       commit("selectChat", payload);
     },
-    sendMessage({ commit }, payload) {
-      commit("sendMessage", payload);
+    sendMessage({ commit, state }, { idx, user, message }) {
+      firebase.put(`data/${state.currentChat.name}/chats.json`, {
+        ...state.currentChat.chats,
+        [idx]: { name: user, text: message }
+      });
+      commit("sendMessage", { idx, user, message });
     }
   },
   getters: {
