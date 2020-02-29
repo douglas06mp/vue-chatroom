@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isAppLoading: true,
-    user: "Bob",
+    user: "",
     currentChat: {},
     chats: {}
   },
