@@ -61,7 +61,11 @@ export default new Vuex.Store({
       commit("selectChat", chatName);
     },
     addChat({ commit, state }, newChatName) {
-      commit("addChat", newChatName);
+      if (Object.keys(state.chats).includes(newChatName)) {
+        commit("selectChat", newChatName);
+      } else {
+        commit("addChat", newChatName);
+      }
     },
     deleteChat({ commit, state }, chatName) {
       if (Object.keys(state.chats[chatName].chats).length) {
