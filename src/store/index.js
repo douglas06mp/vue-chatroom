@@ -1,12 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "../firebase";
-import data from "../data.js";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isAppLoading: true,
     user: "Bob",
     currentChat: {},
     chats: {}
@@ -15,6 +15,7 @@ export default new Vuex.Store({
     setData(state, { chats, currentChat }) {
       state.chats = chats;
       state.currentChat = currentChat;
+      state.isAppLoading = false;
     },
     login(state, payload) {
       state.user = payload;
@@ -57,6 +58,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    isAppLoading: state => {
+      return state.isAppLoading;
+    },
     user: state => {
       return state.user;
     },

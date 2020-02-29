@@ -7,7 +7,7 @@
       </button>
     </div>
     <div class="input-group">
-      <span class="message text-danger">{{
+      <span class="message text-warning">{{
         validation.firstError("name")
       }}</span>
       <input

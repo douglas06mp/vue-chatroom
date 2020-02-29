@@ -1,7 +1,7 @@
 <template>
   <div class="room-list p-3">
     <div class="mb-3">
-      <h3>Chat Room</h3>
+      <h3 class="font-weight-bold">Chat Room</h3>
     </div>
 
     <ul class="list-group mt-2">

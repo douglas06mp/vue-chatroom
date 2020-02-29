@@ -1,6 +1,6 @@
 <template>
   <div class="chat py-3 px-4">
-    <h3>{{ currentChat.name }}</h3>
+    <h3 class="font-weight-bold">{{ currentChat.name }}</h3>
     <div class="content p-3 rounded" ref="content">
       <div
         class="user d-flex align-items-start mb-4"
@@ -88,6 +88,7 @@ export default {
       }
 
       .text {
+        line-height: 1.6;
         background-color: #fff;
         position: relative;
       }

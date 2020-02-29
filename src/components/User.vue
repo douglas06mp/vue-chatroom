@@ -4,7 +4,7 @@
       <img src="https://picsum.photos/100/100?random=1" alt="avatar" />
     </div>
     <div class="media-body d-flex justify-content-between align-items-center">
-      <h3>{{ user }}</h3>
+      <h3 class="font-weight-bold">{{ user }}</h3>
       <button class="btn btn-primary rounded-circle" @click="logout">
         <i class="fas fa-sign-out-alt"></i>
       </button>
