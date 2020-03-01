@@ -49,7 +49,7 @@ export default {
       }
       const idx = Object.keys(this.currentChat.chats).length;
       const user = this.user;
-      const message = this.message;
+      const message = this.message.trim();
       this.$store
         .dispatch("sendMessage", { idx, user, message })
         .then(() => this.scrollToBottom());

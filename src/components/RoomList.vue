@@ -53,13 +53,12 @@ export default {
         this.newChatName = "";
         return;
       }
-      const newChatName = _.capitalize(this.newChatName);
+      const newChatName = _.capitalize(this.newChatName.trim());
       this.$store.dispatch("addChat", newChatName);
       this.newChatName = "";
     },
     deleteChat(key) {
-      this.$store.dispatch("deleteChat", key);
-      this.$forceUpdate();
+      this.$store.dispatch("deleteChat", key).then(this.$forceUpdate());
     }
   }
 };

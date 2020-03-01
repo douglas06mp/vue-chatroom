@@ -46,7 +46,7 @@ export default {
     login() {
       this.$validate().then(success => {
         if (success) {
-          const name = _.capitalize(this.name);
+          const name = _.capitalize(this.name.trim());
           this.$store.dispatch("login", name).then(this.$router.push("/chat"));
         }
       });
