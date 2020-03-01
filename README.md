@@ -1,5 +1,7 @@
 # chat-room
 
+## Demo [github-page](https://douglas06mp.github.io/vue-chatroom/)
+
 ## Project setup
 ```
 npm install
