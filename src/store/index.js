@@ -73,7 +73,10 @@ export default new Vuex.Store({
       }
       commit("deleteChat", chatName);
     },
-    sendMessage({ commit, state }, { idx, user, message }) {
+    sendMessage({ commit }, { idx, user, message }) {
+      this._vm.$socket.emit("sendMessage", { idx, user, message });
+    },
+    SOCKET_sendMessage({ commit, state }, { idx, user, message }) {
       let chatObj = {};
       let url = "";
       if (!Object.keys(state.currentChat.chats).length) {
@@ -94,10 +97,6 @@ export default new Vuex.Store({
       }
       firebase.put(url, chatObj);
       commit("sendMessage", { idx, user, message });
-      // this._vm.$socket.emit("sendMessage", { idx, user, message });
-    },
-    SOCKET_sendMessage({ commit }, { idx, user, message }) {
-      console.log(message);
     }
   },
   getters: {
