@@ -47,7 +47,7 @@ export default {
         this.message = "";
         return;
       }
-      const idx = Object.keys(this.currentChat.chats).length;
+      const idx = new Date().getTime();
       const user = this.user;
       const message = this.message.trim();
       this.$store

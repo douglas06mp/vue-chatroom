@@ -76,7 +76,7 @@ export default new Vuex.Store({
     sendMessage({ commit, state }, { idx, user, message }) {
       let chatObj = {};
       let url = "";
-      if (!idx) {
+      if (!Object.keys(state.currentChat.chats).length) {
         chatObj = {
           name: state.currentChat.name,
           chats: {
@@ -94,6 +94,10 @@ export default new Vuex.Store({
       }
       firebase.put(url, chatObj);
       commit("sendMessage", { idx, user, message });
+      // this._vm.$socket.emit("sendMessage", { idx, user, message });
+    },
+    SOCKET_sendMessage({ commit }, { idx, user, message }) {
+      console.log(message);
     }
   },
   getters: {

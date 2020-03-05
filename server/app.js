@@ -7,6 +7,10 @@ const server = app.listen("8080", () =>
 );
 
 const io = socket(server);
-io.on("connection", () => {
+io.on("connection", socket => {
   console.log("Server connnect");
+
+  socket.on("sendMessage", data => {
+    io.sockets.emit("sendMessage", data);
+  });
 });
