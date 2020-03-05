@@ -16,6 +16,11 @@ export default {
       return this.$store.getters.isAppLoading;
     }
   },
+  sockets: {
+    connect() {
+      console.log("App.vue connect");
+    }
+  },
   created() {
     this.$store.dispatch("setData");
   }
