@@ -1,6 +1,6 @@
 # chat-room
 
-## Demo [github-page](https://douglas06mp.github.io/vue-chatroom/)
+clone the folder and run both vue-app and server
 
 ## Project setup
 ```
