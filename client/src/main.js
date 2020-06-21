@@ -12,7 +12,7 @@ Vue.config.productionTip = false;
 Vue.use(
   new VueSocketio({
     debug: true,
-    connection: "http://localhost:8080/",
+    connection: "http://localhost:5000/",
     vuex: {
       store,
       actionPrefix: "SOCKET_",
