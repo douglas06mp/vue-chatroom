@@ -1,14 +1,19 @@
 {
-  "name": "server",
+  "name": "vue-chatroom",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "vue-chatroom",
+  "engines": {
+    "node": "10.15.0",
+    "npm": "6.4.1"
+  },
+  "main": "server.js",
   "scripts": {
     "client": "cd client && npm run serve",
     "build": "cd client && npm run build",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrink-wrap && npm run build"
   },
   "keywords": [],
   "author": "",

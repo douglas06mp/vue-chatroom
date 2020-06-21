@@ -18,7 +18,7 @@ export default {
   },
   sockets: {
     connect() {
-      console.log("App.vue connect");
+      console.log("App.vue connect with socket io");
     }
   },
   created() {
